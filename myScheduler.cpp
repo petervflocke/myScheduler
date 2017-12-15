@@ -9,14 +9,7 @@ Schedular::Schedular(schedulerUnits _units)
 }
 
 inline unsigned long Schedular::getTimeByUnit() {
-   //return (_units==_Millis)? millis():now();
-   switch (_units) {
-     case _Millis  : return millis();
-     case _Seconds : return second();
-     case _Minutes : return minute();
-     case _Hours   : return hour();
-   }
-
+   return (_units==_Millis)? millis():now();
 }
 
 unsigned long Schedular::calcTimeByUnit(unsigned long _tt) {
@@ -32,12 +25,12 @@ unsigned long Schedular::calcTimeByUnit(unsigned long _tt) {
 // Check if task needs to run
 void Schedular::check(TaskFunctionCallback MethodeToCall, long Interval) {
     unsigned long _tmp = getTimeByUnit();
-    Serial.print("now=");
-    Serial.print(_tmp);
-    Serial.print(" last=");
-    Serial.print(_lastRun);
-    Serial.print(" now-last=");
-    Serial.println(long(_tmp - _lastRun));
+    // Serial.print("now=");
+    // Serial.print(_tmp);
+    // Serial.print(" last=");
+    // Serial.print(_lastRun);
+    // Serial.print(" now-last=");
+    // Serial.println(long(_tmp - _lastRun));
 
     //if(_working && abs(long(_tmp - _lastRun)) >= long(calcTimeByUnit(Interval))) {
     if(_working && abs((long)(_tmp - _lastRun)) >= Interval) {
